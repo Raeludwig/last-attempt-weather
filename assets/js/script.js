@@ -8,7 +8,7 @@ var cityName=document.querySelector('.cityName')
 var cityWindSpeedCurrent=document.querySelector('.cityWindSpeed')
 var cityTemp=document.querySelector('.cityTemp')
 var cityHumidityCurrent= document.querySelector('.cityHumidity')
-
+var currentDate=document.querySelector(".current-date")
 
 var today = dayjs();
 $('#currentDay').text(today.format('dddd, MMMM D'));
@@ -23,16 +23,16 @@ https://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{coun
 
 
 
-// fetch(currentQueryURL) = "http://api.openweathermap.org/data/2.5/weather?q=" + city.value + "&appid=" + APIKey + "&units=imperial";
-
-
+//rendering the current weather
 function renderCurrentWeather(weather){
     console.log(weather)
     cityName.textContent=`${weather.city.name}`
     cityWindSpeedCurrent.textContent=`${weather.list[0].wind.speed} mph`
     cityHumidityCurrent.textContent=`Humidity: ${weather.list[0].main.humidity}%`
     cityTemp.textContent=`Temperature: ${weather.list[0].main.temp} F`
-
+var date= new Date(weather.list[0].dt *1000)
+var formatedDate=date.toLocaleDateString()
+currentDate.textContent=formatedDate
     }
 
 
@@ -106,20 +106,26 @@ function renderFiveDay(weather) {
         var icon = document.createElement('img')
         icon.src= `https://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}.png`
    
-//time
-var currHour = dayjs().hour();
+//shows the date
+var dateFiveDay= new Date(weather.list[i].dt *1000)
+var formatedDateFiveDay=dateFiveDay.toLocaleDateString()
+var createDateEl =document.createElement('h3')
+createDateEl.textContent=`${formatedDateFiveDay}`
 
 
 
 
 //calling the changes to the div
+
         card.setAttribute("class", "card")
         fiveDayEl.appendChild(card)
+        card.append(createDateEl)
         card.append(cityTemp)
         card.append(cityHumidity)
         card.append(cityWindSpeed)
         card.append(cityCondition)
         card.append(icon)
+
 
     }
 
