@@ -4,6 +4,11 @@ var submitBtn = document.querySelector('button');
 var fiveDayEl = document.querySelector('.five-day')
 var current=document.querySelector(".current")
 var unitIsFarenheit = true;
+var cityName=document.querySelector('.cityName')
+var cityWindSpeedCurrent=document.querySelector('.cityWindSpeed')
+var cityTemp=document.querySelector('.cityTemp')
+var cityHumidityCurrent= document.querySelector('.cityHumidity')
+
 
 var today = dayjs();
 $('#currentDay').text(today.format('dddd, MMMM D'));
@@ -20,9 +25,15 @@ https://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{coun
 
 // fetch(currentQueryURL) = "http://api.openweathermap.org/data/2.5/weather?q=" + city.value + "&appid=" + APIKey + "&units=imperial";
 
-var currentQueryURL= document.querySelector(".current")
 
+function renderCurrentWeather(weather){
+    console.log(weather)
+    cityName.textContent=`${weather.city.name}`
+    cityWindSpeedCurrent.textContent=`${weather.list[0].wind.speed} mph`
+    cityHumidityCurrent.textContent=`Humidity: ${weather.list[0].main.humidity}%`
+    cityTemp.textContent=`Temperature: ${weather.list[0].main.temp} F`
 
+    }
 
 
 function weatherSearch() {
@@ -35,6 +46,7 @@ function weatherSearch() {
         .then(data => {
             console.log(city.value)
             renderFiveDay(data)
+            renderCurrentWeather(data)
             
         })
     saveHistory()
@@ -63,7 +75,7 @@ for (i = 0; i < searchHistory.length; i++) {
 
    // li.appendChild(button);
     savedCities.append(li);
-    console.log(savedCities);
+    // console.log(savedCities);
   }
 
     localStorage.setItem('history', JSON.stringify(cityHistory))
@@ -73,7 +85,7 @@ for (i = 0; i < searchHistory.length; i++) {
 
 //render the 5 day forecast
 function renderFiveDay(weather) {
-    console.log(weather)
+    // console.log(weather)
     fiveDayEl.innerHTML="";
     for (var i = 0; i < weather.list.length; i = i + 8) {
         console.log(weather.list[i])
@@ -96,6 +108,8 @@ function renderFiveDay(weather) {
    
 //time
 var currHour = dayjs().hour();
+
+
 
 
 //calling the changes to the div
