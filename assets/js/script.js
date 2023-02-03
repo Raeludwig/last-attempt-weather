@@ -42,7 +42,7 @@ currentDate.textContent=formatedDate
 
 function weatherSearch() {
     //forecast
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city.value + "&appid=" + APIKey + "&units=imperial" + "&iconSet=icons1";
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city.value + "&appid=" + APIKey + "&units=imperial" + "&iconSet=icons1";
 
    
     fetch(queryURL)
