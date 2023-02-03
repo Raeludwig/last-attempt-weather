@@ -9,6 +9,7 @@ var cityWindSpeedCurrent=document.querySelector('.cityWindSpeed')
 var cityTemp=document.querySelector('.cityTemp')
 var cityHumidityCurrent= document.querySelector('.cityHumidity')
 var currentDate=document.querySelector(".current-date")
+var cityCurrentConditions=document.querySelector(".city-conditions-current")
 
 var today = dayjs();
 $('#currentDay').text(today.format('dddd, MMMM D'));
@@ -27,9 +28,12 @@ https://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{coun
 function renderCurrentWeather(weather){
     console.log(weather)
     cityName.textContent=`${weather.city.name}`
-    cityWindSpeedCurrent.textContent=`${weather.list[0].wind.speed} mph`
+    cityWindSpeedCurrent.textContent=`Wind Speed: ${weather.list[0].wind.speed} mph`
     cityHumidityCurrent.textContent=`Humidity: ${weather.list[0].main.humidity}%`
     cityTemp.textContent=`Temperature: ${weather.list[0].main.temp} F`
+cityCurrentConditions.textContent= `Conditions: ${weather.list[0].weather[0].description}`
+
+
 var date= new Date(weather.list[0].dt *1000)
 var formatedDate=date.toLocaleDateString()
 currentDate.textContent=formatedDate
