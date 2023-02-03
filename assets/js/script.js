@@ -13,14 +13,6 @@ var cityCurrentConditions=document.querySelector(".city-conditions-current")
 
 var today = dayjs();
 $('#currentDay').text(today.format('dddd, MMMM D'));
-// var searchHistroy = docment.querySelector('.search-history')
-
-// fetch(queryURL);
-
-// const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=imperial`;
-
-// TODO: is the following link what I need to put in for the option to search for more than just a city?
-https://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
 
 
 
