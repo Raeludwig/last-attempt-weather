@@ -11,6 +11,7 @@ var cityHumidityCurrent= document.querySelector('.cityHumidity')
 var currentDate=document.querySelector(".current-date")
 var cityCurrentConditions=document.querySelector(".city-conditions-current")
 
+
 var today = dayjs();
 $('#currentDay').text(today.format('dddd, MMMM D'));
 
@@ -24,6 +25,7 @@ function renderCurrentWeather(weather){
     cityHumidityCurrent.textContent=`Humidity: ${weather.list[0].main.humidity}%`
     cityTemp.textContent=`Temperature: ${weather.list[0].main.temp} F`
 cityCurrentConditions.textContent= `Conditions: ${weather.list[0].weather[0].description}`
+
 
 
 var date= new Date(weather.list[0].dt *1000)
